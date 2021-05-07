@@ -1,4 +1,4 @@
-package com.example.domain.entities
+package com.example.domain.models
 
 class Recipe(
         val id: String,
@@ -13,5 +13,6 @@ class Recipe(
         val isCheap: Boolean = false,
         val isDairyFree: Boolean = false,
         val isGlutenFree: Boolean = false,
-        val gradient: List<Ingredient>?
+        val readyInMinutes: Int = 0,
+        val gradient: List<Ingredient>? = null
 )
