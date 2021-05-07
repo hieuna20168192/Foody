@@ -1,8 +1,8 @@
 package com.example.domain.usecases
 
-import com.example.domain.repository.RecipesRepository
+import com.example.domain.repository.RecipeRepository
 
-class GetRecipesUseCase (private val recipesRepository: RecipesRepository) {
+class GetRecipesUseCase (private val recipesRepository: RecipeRepository) {
     operator fun invoke() = recipesRepository.getRecipes()
-    suspend fun fetchRecipesCache() = recipesRepository.fetchRecipesCache()
+    suspend fun fetchRecipesCache(query: Map<String, String>) = recipesRepository.fetchRecipesCache(query)
 }
