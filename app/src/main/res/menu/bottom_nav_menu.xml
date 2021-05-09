@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/recipeListDest"
+        android:icon="@drawable/ic_home_24"
+        android:title="@string/title_home_menu_item" />
+    <item
+        android:id="@+id/favoriteDest"
+        android:icon="@drawable/ic_favorite_24"
+        android:title="@string/title_favorite_menu_item" />
+    <item
+        android:id="@+id/jokeDest"
+        android:icon="@drawable/ic_joke_24"
+        android:title="@string/title_joke_menu_item" />
+</menu>
