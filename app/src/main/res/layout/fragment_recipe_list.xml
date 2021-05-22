@@ -62,7 +62,7 @@
             android:padding="@dimen/dp_16"
             android:text="@{viewModel.errorMsg}"
             android:visibility="@{viewModel.status == VMStatus.ERROR ? View.VISIBLE : View.GONE}"
-            app:fontFamily="sans-serif-medium"
+            app:fontFamily="sans-serif"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgStatus" />
