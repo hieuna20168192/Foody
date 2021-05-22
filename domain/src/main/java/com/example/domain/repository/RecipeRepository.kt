@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecipeRepository {
     fun getRecipes(): Flow<List<Recipe>>
-    suspend fun fetchRecipesCache(query: Map<String, String>): Result<List<Recipe>>
+    suspend fun fetchRecipesCache(query: HashMap<String, String>): Result<List<Recipe>>
 }

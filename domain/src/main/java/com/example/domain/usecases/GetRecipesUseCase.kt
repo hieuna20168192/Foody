@@ -1,8 +1,9 @@
 package com.example.domain.usecases
 
 import com.example.domain.repository.RecipeRepository
+import javax.inject.Inject
 
-class GetRecipesUseCase (private val recipesRepository: RecipeRepository) {
+class GetRecipesUseCase @Inject constructor(private val recipesRepository: RecipeRepository) {
     operator fun invoke() = recipesRepository.getRecipes()
-    suspend fun fetchRecipesCache(query: Map<String, String>) = recipesRepository.fetchRecipesCache(query)
+    suspend fun fetchRecipesCache(query: HashMap<String, String>) = recipesRepository.fetchRecipesCache(query)
 }

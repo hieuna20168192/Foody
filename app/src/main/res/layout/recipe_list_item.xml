@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="recipe"
+            type="com.example.domain.models.Recipe" />
+
+        <variable
+            name="clickListener"
+            type="com.example.foody.adapters.RecipeClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:onClick="@{() -> clickListener.onClick(recipe)}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgRecipe"
+            imageUrl="@{recipe.imageUrl}"
+            android:layout_width="@dimen/dp_164"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="h,4:3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="?attr/textAppearanceHeadline6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="@dimen/dp_4"
+            android:paddingEnd="@dimen/dp_4"
+            android:text="@{recipe.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imgRecipe"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            style="?attr/subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="@dimen/dp_4"
+            android:text="@{recipe.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgRecipe"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="@tools:sample/lorem/random" />
+
+        <ImageView
+            android:id="@+id/imgHeartIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/msg_heart_icon_des"
+            android:padding="@dimen/dp_4"
+            android:src="@drawable/ic_heart"
+            app:tint="@android:color/holo_red_light" />
+
+        <ImageView
+            android:id="@+id/imgTimeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/msg_time_icon_des"
+            android:padding="@dimen/dp_4"
+            android:src="@drawable/ic_clock"
+            app:layout_constraintStart_toEndOf="@+id/imgHeartIcon"
+            app:layout_constraintTop_toTopOf="@+id/imgHeartIcon"
+            app:tint="@android:color/holo_orange_light" />
+
+        <ImageView
+            android:id="@+id/imgLeafIcon"
+            isVegan="@{recipe.vegan}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/msg_left_icon_des"
+            android:padding="@dimen/dp_4"
+            android:src="@drawable/ic_leaf"
+            app:layout_constraintStart_toEndOf="@+id/imgTimeIcon"
+            app:layout_constraintTop_toTopOf="@id/imgHeartIcon" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flowIcons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            app:constraint_referenced_ids="imgHeartIcon, imgTimeIcon, imgLeafIcon"
+            app:flow_horizontalStyle="packed"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/imgRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+        <TextView
+            android:id="@+id/tvLikes"
+            numToText="@{recipe.aggregateLikes}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="@id/imgHeartIcon"
+            app:layout_constraintStart_toStartOf="@id/imgHeartIcon"
+            app:layout_constraintTop_toBottomOf="@+id/imgHeartIcon"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            numToMinute="@{recipe.readyInMinutes}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="@id/imgTimeIcon"
+            app:layout_constraintStart_toStartOf="@id/imgTimeIcon"
+            app:layout_constraintTop_toBottomOf="@+id/imgTimeIcon"
+            tools:text="15'" />
+
+        <TextView
+            android:id="@+id/tvIsLeaf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/title_vegan_icon"
+            app:layout_constraintEnd_toEndOf="@id/imgLeafIcon"
+            app:layout_constraintStart_toStartOf="@id/imgLeafIcon"
+            app:layout_constraintTop_toBottomOf="@+id/imgLeafIcon"
+            tools:text="leaf" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:layout_margin="@dimen/dp_4"
+            android:background="@color/primaryDarkColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgRecipe" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

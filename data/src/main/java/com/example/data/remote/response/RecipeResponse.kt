@@ -10,11 +10,11 @@ data class Food(
     val aggregateLikes: Int,
     val cheap: Boolean,
     val dairyFree: Boolean,
-    val extendedIngredients: List<ExtendedIngredient>,
+    val extendedIngredients: List<ExtendedIngredient>?,
     val glutenFree: Boolean,
     @Json(name = "id")
     val recipeId: Int,
-    val image: String,
+    val image: String?,
     val readyInMinutes: Int,
     val sourceName: String?,
     val sourceUrl: String,
@@ -26,10 +26,10 @@ data class Food(
 )
 
 data class ExtendedIngredient(
-    val amount: Double,
-    val consistency: String,
-    val image: String,
-    val name: String,
-    val original: String,
-    val unit: String
+    val amount: Double?,
+    val consistency: String?,
+    val image: String?,
+    val name: String?,
+    val original: String?,
+    val unit: String?
 )

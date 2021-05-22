@@ -11,7 +11,7 @@ data class Recipe(
         val title: String,
         val description: String,
         @ColumnInfo(name = "image_url")
-        val imageUrl: String,
+        val imageUrl: String?,
         @ColumnInfo(name = "number_of_likes")
         val numberOfLikes: Int,
         @ColumnInfo(name = "time_for_ready")

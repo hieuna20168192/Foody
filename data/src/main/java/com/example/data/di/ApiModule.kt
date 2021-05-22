@@ -1,6 +1,6 @@
 package com.example.data.di
 
-import com.example.data.common.Constants
+import com.example.data.BuildConfig.BASE_URL
 import com.example.data.remote.api.FoodApiServices
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -29,7 +29,7 @@ object ApiModule {
     ): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(BASE_URL)
             .build()
 
     @Provides

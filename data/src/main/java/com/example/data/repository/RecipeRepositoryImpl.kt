@@ -23,7 +23,7 @@ class RecipeRepositoryImpl(
             entities.map { entity -> RecipeEntityMapper.toRecipeModel(entity) }
         }
 
-    override suspend fun fetchRecipesCache(query: Map<String, String>): Result<List<Recipe>> {
+    override suspend fun fetchRecipesCache(query: HashMap<String, String>): Result<List<Recipe>> {
         return try {
             val response = recipeApiServices.getRecipes(query)
             val recipeModels = RecipeApiMapper.toRecipeModel(response)

@@ -5,4 +5,10 @@
     <string name="title_home_menu_item">Home</string>
     <string name="title_favorite_menu_item">Favorite</string>
     <string name="title_joke_menu_item">Joke</string>
+    <string name="title_search_menu_item">Search</string>
+    <string name="msg_fab_filter_des">Filtering Meals</string>
+    <string name="msg_heart_icon_des">Aggregate likes</string>
+    <string name="msg_time_icon_des">Time Ready In Minute</string>
+    <string name="msg_left_icon_des">The food is vegan</string>
+    <string name="title_vegan_icon">vegan</string>
 </resources>

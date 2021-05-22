@@ -1,6 +1,6 @@
 package com.example.data.remote.mappers
 
-import com.example.data.common.Constants
+import com.example.data.BuildConfig.SMALL_IMAGE_URL
 import com.example.data.remote.response.RecipeResponse
 import com.example.domain.models.Ingredient
 import com.example.domain.models.Recipe
@@ -23,10 +23,10 @@ object RecipeApiMapper {
                 food.dairyFree,
                 food.glutenFree,
                 food.readyInMinutes,
-                food.extendedIngredients.map {
+                food.extendedIngredients?.map {
                     Ingredient(
                         it.name,
-                        Constants.BASE_IMAGE_URL + it.image,
+                        SMALL_IMAGE_URL + it.image,
                         it.original,
                         it.amount,
                         it.consistency,

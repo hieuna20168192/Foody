@@ -32,6 +32,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    libraryVariants.all {
+        buildConfigField("String", "BASE_URL", "\"https://api.spoonacular.com\"")
+        buildConfigField("String", "SMALL_IMAGE_URL", "\"https://spoonacular.com/cdn/ingredients_100x100\"")
+        buildConfigField("String", "API_KEY", "\"5054a1064fb244cf83ab044db687b2cc\"")
+    }
 }
 
 dependencies {
@@ -67,4 +73,5 @@ dependencies {
     // Hilt dependencies
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
 }

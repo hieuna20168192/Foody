@@ -1,11 +1,11 @@
 package com.example.domain.models
 
-class Recipe(
+data class Recipe(
         val id: String,
         val title: String = "",
         val description: String = "",
         var isFavorite: Boolean = false,
-        val imageUrl: String = "",
+        val imageUrl: String? = "",
         val aggregateLikes: Int = 0,
         val isVegan: Boolean = false,
         val isVegetarian: Boolean = false,
