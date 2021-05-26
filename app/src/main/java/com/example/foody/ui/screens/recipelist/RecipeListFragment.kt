@@ -7,13 +7,17 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.*
 import com.example.foody.R
 import com.example.foody.adapters.RecipeClickListener
 import com.example.foody.adapters.RecipeListAdapter
 import com.example.foody.databinding.FragmentRecipeListBinding
 import com.example.foody.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class RecipeListFragment : BaseFragment<FragmentRecipeListBinding>(),
     SearchView.OnQueryTextListener {
@@ -22,13 +26,17 @@ class RecipeListFragment : BaseFragment<FragmentRecipeListBinding>(),
 
     private val viewModel: RecipeViewModel by viewModels()
 
+    private lateinit var adapter: RecipeListAdapter
+
     override fun initComponents() {
         setHasOptionsMenu(true)
         viewBinding.viewModel = viewModel
     }
 
     override fun initListeners() {
-        onListAdapter()
+        onRecipeItem()
+        onRecipeRefresh()
+        onRecipeLoadMore()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -50,11 +58,35 @@ class RecipeListFragment : BaseFragment<FragmentRecipeListBinding>(),
 
     override fun onQueryTextChange(newText: String?) = false
 
-    private fun onListAdapter() {
-        val adapter = RecipeListAdapter(RecipeClickListener { recipe ->
+    private fun onRecipeItem() {
+        adapter = RecipeListAdapter(RecipeClickListener { recipe ->
             // Route to the recipe detail screen here.
             Toast.makeText(context, recipe.title, Toast.LENGTH_SHORT).show()
         })
         viewBinding.rclRecipeList.adapter = adapter
+    }
+
+    private fun onRecipeRefresh() {
+        viewBinding.swipeRefreshList.setOnRefreshListener {
+            viewModel.refresh()
+        }
+    }
+
+    private fun onRecipeLoadMore() {
+        viewBinding.rclRecipeList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                when (newState) {
+                    SCROLL_STATE_SETTLING -> {
+                        if (!recyclerView.canScrollVertically(1)) {
+                            viewModel.loadMore()
+                        }
+                    }
+                    SCROLL_STATE_IDLE -> {
+                        viewModel.enableLoadingMore()
+                    }
+                }
+            }
+        })
     }
 }

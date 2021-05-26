@@ -12,6 +12,7 @@ object Constants {
     const val QUERY_FILL_INGREDIENTS = "fillIngredients"
 
     const val DEFAULT_RECIPES_NUMBER = "50"
+    const val DEFAULT_LOAD_MORE_RECIPES_NUMBER = "16"
     const val DEFAULT_MEAL_TYPE = "main course"
     const val DEFAULT_DIET_TYPE = "gluten free"
 }

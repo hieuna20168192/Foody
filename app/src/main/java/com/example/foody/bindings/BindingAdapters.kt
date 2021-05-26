@@ -6,18 +6,25 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.domain.models.Recipe
 import com.example.foody.R
 import com.example.foody.adapters.RecipeListAdapter
 import com.example.foody.ui.base.VMStatus
+import com.example.foody.ui.screens.recipelist.ScrollDirection
 
-@BindingAdapter("recipeList")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Recipe>?) {
+@BindingAdapter("recipeList", "scrollDirection", requireAll = false)
+fun bindRecyclerView(
+    recyclerView: RecyclerView,
+    data: List<Recipe>?,
+    direction: ScrollDirection?
+) {
     val adapter = recyclerView.adapter as RecipeListAdapter
     adapter.submitList(data) {
-        recyclerView.scrollToPosition(0)
+        val posToScroll = if (direction == ScrollDirection.DOWN) adapter.itemCount - 1 else 0
+        recyclerView.scrollToPosition(posToScroll)
     }
 }
 
@@ -45,7 +52,8 @@ fun bindText(textView: TextView, num: Int?) {
 @BindingAdapter("numToMinute")
 fun bindMinute(textView: TextView, num: Int?) {
     num?.let {
-        textView.text = "$num'"
+        textView.text =
+            textView.context.resources.getString(R.string.title_num_to_minute, num)
     }
 }
 
@@ -79,5 +87,15 @@ fun bindStatus(
         VMStatus.DONE -> {
             statusImgView.visibility = View.GONE
         }
+    }
+}
+
+@BindingAdapter("setRefreshing")
+fun setRefreshing(
+    swipeRefreshLayout: SwipeRefreshLayout,
+    isRefreshing: Boolean?
+) {
+    isRefreshing?.let {
+        swipeRefreshLayout.isRefreshing = it
     }
 }

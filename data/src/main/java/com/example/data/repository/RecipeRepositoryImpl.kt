@@ -30,7 +30,6 @@ class RecipeRepositoryImpl(
             val recipeEntities = recipeModels.map { recipeModel ->
                 RecipeEntityMapper.toRecipeEntity(recipeModel)
             }.toTypedArray()
-            // Now, we cache the list into local storage.
             recipeDao.insertRecipe(*recipeEntities)
             Result.Success(recipeModels)
         } catch (e: Exception) {

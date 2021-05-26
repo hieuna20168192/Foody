@@ -42,7 +42,7 @@ android {
     applicationVariants.all {
         buildConfigField("String", "BASE_URL", "\"https://api.spoonacular.com\"")
         buildConfigField("String", "SMALL_IMAGE_URL", "\"https://spoonacular.com/cdn/ingredients_100x100\"")
-        buildConfigField("String", "API_KEY", "\"5054a1064fb244cf83ab044db687b2cc\"")
+        buildConfigField("String", "API_KEY", "\"83428400b9204826942d5b4c3315f290\"")
     }
 }
 
@@ -92,4 +92,7 @@ dependencies {
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
+
+    // Swipe Refresh Layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
