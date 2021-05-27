@@ -23,7 +23,7 @@ fun bindRecyclerView(
 ) {
     val adapter = recyclerView.adapter as RecipeListAdapter
     adapter.submitList(data) {
-        val posToScroll = if (direction == ScrollDirection.DOWN) adapter.itemCount - 1 else 0
+        val posToScroll = if (direction == ScrollDirection.UP) adapter.itemCount - 1 else 0
         recyclerView.scrollToPosition(posToScroll)
     }
 }

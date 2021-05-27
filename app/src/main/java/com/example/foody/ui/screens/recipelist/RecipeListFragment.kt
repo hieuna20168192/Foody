@@ -4,9 +4,9 @@ import android.graphics.Typeface
 import android.view.Menu
 import android.view.MenuInflater
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
 import com.example.foody.R
@@ -37,6 +37,7 @@ class RecipeListFragment : BaseFragment<FragmentRecipeListBinding>(),
         onRecipeItem()
         onRecipeRefresh()
         onRecipeLoadMore()
+        onNavigateRecipeDetail()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -60,8 +61,7 @@ class RecipeListFragment : BaseFragment<FragmentRecipeListBinding>(),
 
     private fun onRecipeItem() {
         adapter = RecipeListAdapter(RecipeClickListener { recipe ->
-            // Route to the recipe detail screen here.
-            Toast.makeText(context, recipe.title, Toast.LENGTH_SHORT).show()
+            viewModel.onRecipeItemClicked(recipe.id)
         })
         viewBinding.rclRecipeList.adapter = adapter
     }
@@ -76,17 +76,25 @@ class RecipeListFragment : BaseFragment<FragmentRecipeListBinding>(),
         viewBinding.rclRecipeList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                when (newState) {
-                    SCROLL_STATE_SETTLING -> {
-                        if (!recyclerView.canScrollVertically(1)) {
-                            viewModel.loadMore()
-                        }
-                    }
-                    SCROLL_STATE_IDLE -> {
-                        viewModel.enableLoadingMore()
-                    }
+                if (newState == SCROLL_STATE_SETTLING &&
+                    !recyclerView.canScrollVertically(1)
+                ) {
+                    viewModel.loadMore()
                 }
             }
         })
     }
+
+    private fun onNavigateRecipeDetail() {
+        viewModel.navigateToRecipeDetail.observe(viewLifecycleOwner, { recipeId ->
+            recipeId?.let {
+                this.findNavController().navigate(
+                    RecipeListFragmentDirections
+                        .actionRecipeListDestToRecipeDetailDest(recipeId)
+                )
+                viewModel.onRecipeDetailNavigated()
+            }
+        })
+    }
+
 }

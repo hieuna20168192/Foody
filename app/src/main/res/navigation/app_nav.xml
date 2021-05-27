@@ -9,7 +9,11 @@
         android:id="@+id/recipeListDest"
         android:name="com.example.foody.ui.screens.recipelist.RecipeListFragment"
         android:label="RecipeListFragment"
-        tools:layout="@layout/fragment_recipe_list" />
+        tools:layout="@layout/fragment_recipe_list">
+        <action
+            android:id="@+id/action_recipeListDest_to_recipeDetailDest"
+            app:destination="@+id/recipeDetailDest" />
+    </fragment>
     <fragment
         android:id="@+id/jokeDest"
         android:name="com.example.foody.ui.screens.joke.JokeFragment"
@@ -20,4 +24,19 @@
         android:name="com.example.foody.ui.screens.favorite.FavoriteRecipeFragment"
         android:label="FavoriteRecipeFragment"
         tools:layout="@layout/fragment_favorite_recipe" />
+    <fragment
+        android:id="@+id/recipeDetailDest"
+        android:name="com.example.foody.ui.screens.recipedetail.RecipeDetailFragment"
+        android:label="RecipeDetailFragment"
+        tools:layout="@layout/fragment_recipe_detail">
+        <argument
+            android:name="recipeKey"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_recipeDetailDest_to_recipeListDest"
+            app:destination="@+id/recipeListDest"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/recipeDetailDest"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

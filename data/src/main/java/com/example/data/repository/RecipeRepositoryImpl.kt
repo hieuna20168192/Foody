@@ -36,4 +36,14 @@ class RecipeRepositoryImpl(
             Result.Failure(Throwable(e))
         }
     }
+
+    override suspend fun fetchRecipe(id: String): Result<Recipe> {
+        return try {
+            val response = recipeApiServices.getRecipe(id)
+            val recipeModel = RecipeApiMapper.toRecipeModel(response)
+            Result.Success(recipeModel)
+        } catch (e: Exception) {
+            Result.Failure(Throwable(e))
+        }
+    }
 }
