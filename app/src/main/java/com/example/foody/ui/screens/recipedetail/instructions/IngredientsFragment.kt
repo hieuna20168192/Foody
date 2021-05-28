@@ -13,4 +13,8 @@ class IngredientsFragment : BaseFragment<FragmentIngredientsBinding>() {
     override fun initComponents() = Unit
 
     override fun initListeners() = Unit
+
+    companion object {
+        const val INGREDIENT_TAB = "Ingredients"
+    }
 }

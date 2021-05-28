@@ -39,4 +39,9 @@
             app:popUpTo="@id/recipeDetailDest"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/overViewDest"
+        android:name="com.example.foody.ui.screens.recipedetail.overview.OverViewFragment"
+        tools:layout="@layout/fragment_overview"
+        android:label="OverViewFragment" />
 </navigation>

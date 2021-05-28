@@ -1,18 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="recipe"
-            type="com.example.domain.models.Recipe" />
+            name="viewModel"
+            type="com.example.foody.ui.screens.recipedetail.RecipeDetailViewModel" />
+
+        <import type="com.example.foody.ui.base.VMStatus" />
+
+        <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.screens.recipedetail.overview.OverViewFragment">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@android:color/white"
+            android:visibility="@{viewModel.status == VMStatus.DONE ? View.VISIBLE : View.GONE}">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@android:color/darker_gray"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/imgRecipeThumb"
+                    imageUrl="@{viewModel.recipe.imageUrl}"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_320"
+                    android:contentDescription="@string/title_food_info_image"
+                    android:scaleType="centerCrop"
+                    tools:src="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/tvFoodTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@android:color/white"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:padding="@dimen/dp_16"
+                    android:text="@{viewModel.recipe.title}"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    app:layout_collapseMode="parallax"
+                    tools:text="@tools:sample/lorem" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/svTypes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgTypes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_16"
+                    app:selectionRequired="false" />
+            </HorizontalScrollView>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.status == VMStatus.DONE ? View.VISIBLE : View.GONE}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:id="@+id/tvInfoDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/dp_16"
+                android:text="@{viewModel.recipe.description}"
+                tools:text="@tools:sample/lorem/random" />
+        </androidx.core.widget.NestedScrollView>
+
+        <ImageView
+            android:id="@+id/imgFoodInfoStatus"
+            recipesApiStatus="@{viewModel.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/title_status" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -1,6 +1,8 @@
 package com.example.foody.ui.screens
 
+import android.view.View
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -28,6 +30,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         setUpAppBarConfig()
         setUpActionBar()
         setupBottomNav()
+        onDestinationChange()
     }
 
     override fun initListeners() = Unit
@@ -51,6 +54,30 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun setupBottomNav() {
         viewBinding.bottomNav.setupWithNavController(navController)
+    }
+
+    private fun onDestinationChange() {
+        navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
+            val toolbar = supportActionBar ?: return@addOnDestinationChangedListener
+            when (destination.id) {
+                R.id.recipeListDest -> {
+                    toolbar.setDisplayShowTitleEnabled(false)
+                    viewBinding.bottomNav.visibility = View.VISIBLE
+                }
+                R.id.favoriteDest -> {
+                    toolbar.setDisplayShowTitleEnabled(true)
+                    viewBinding.bottomNav.visibility = View.VISIBLE
+                }
+                R.id.jokeDest -> {
+                    toolbar.setDisplayShowTitleEnabled(true)
+                    viewBinding.bottomNav.visibility = View.VISIBLE
+                }
+                else -> {
+                    toolbar.setDisplayShowTitleEnabled(true)
+                    viewBinding.bottomNav.visibility = View.GONE
+                }
+            }
+        }
     }
 
 }

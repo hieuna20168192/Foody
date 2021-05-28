@@ -36,7 +36,7 @@ android {
     libraryVariants.all {
         buildConfigField("String", "BASE_URL", "\"https://api.spoonacular.com\"")
         buildConfigField("String", "SMALL_IMAGE_URL", "\"https://spoonacular.com/cdn/ingredients_100x100\"")
-        buildConfigField("String", "API_KEY", "\"5054a1064fb244cf83ab044db687b2cc\"")
+        buildConfigField("String", "API_KEY", "\"83428400b9204826942d5b4c3315f290\"")
     }
 }
 
@@ -74,4 +74,5 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 }

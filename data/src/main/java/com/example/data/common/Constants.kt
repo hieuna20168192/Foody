@@ -16,4 +16,12 @@ object Constants {
     const val MAX_RECIPES_NUMBER = 120
     const val DEFAULT_MEAL_TYPE = "main course"
     const val DEFAULT_DIET_TYPE = "gluten free"
+
+    const val IS_VEGAN = "is vegan"
+    const val IS_VEGETARIAN = "is vegetarian"
+    const val IS_HEALTHY = "is healthy"
+    const val IS_CHEAP = "is cheap"
+    const val IS_DAIRY_FREE = "is dairy free"
+    const val IS_GLUTEN_FREE = "is gluten free"
+
 }

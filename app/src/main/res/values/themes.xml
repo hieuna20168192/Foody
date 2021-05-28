@@ -23,6 +23,7 @@
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/lobster_two</item>
         <item name="fontFamily">@font/lobster_two</item>
+        <item name="tabStyle">@style/Widget.App.TabLayout</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
@@ -33,8 +34,18 @@
         <item name="cornerSize">10%</item>
     </style>
 
-<!--    <style name="TextAppearance.CustomHeadline6" parent="TextAppearance.MaterialComponents.Headline6">-->
-<!--        <item name="android:textSize">18sp</item>-->
-<!--        <item name="textAppearanceHeadline6">@style/TextAppearance.CustomHeadline6</item>-->
-<!--    </style>-->
+    <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextAppearance">@style/TextAppearance.App.Button</item>
+    </style>
+
+    <style name="ThemeOverlay.App.TabLayout" parent="">
+        <item name="colorPrimary">@color/primaryLightColor</item>
+        <item name="colorSurface">@color/primaryColor</item>
+        <item name="colorOnSurface">@color/primaryLightColor</item>
+    </style>
+
+    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/rubik_medium</item>
+        <item name="android:fontFamily">@font/rubik_medium</item>
+    </style>
 </resources>

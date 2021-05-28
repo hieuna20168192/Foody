@@ -13,4 +13,5 @@
     <string name="title_status">Progress Indicator</string>
     <string name="title_load_more">Loading More Recipes</string>
     <string name="title_num_to_minute">%1$d\'</string>
+    <string name="title_food_info_image">Detail recipe image thumb</string>
 </resources>
