@@ -11,7 +11,6 @@ import com.example.foody.databinding.RecipeListItemBinding
 import com.example.foody.ui.base.BaseViewHolder
 import java.lang.IllegalArgumentException
 
-
 private const val LOAD_MORE_TYPE = 0
 private const val RECIPE_TYPE = 1
 private const val UNKNOWN_TYPE = -1

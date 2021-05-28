@@ -1,21 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.foody.ui.screens.recipedetail.RecipeDetailViewModel" />
+
+        <import type="com.example.foody.ui.base.VMStatus" />
+
+        <import type="android.view.View" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.screens.recipedetail.instructions.IngredientsFragment">
+        tools:context=".ui.screens.recipedetail.ingredients.IngredientsFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello Ingredient" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclIngredients"
+            ingredientList="@{viewModel.ingredients}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/dp_16"
+            android:visibility="@{viewModel.status == VMStatus.DONE ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="15"
+            tools:listitem="@layout/ingredient_item" />
 
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/imgStatus"
+            recipesApiStatus="@{viewModel.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/title_status"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

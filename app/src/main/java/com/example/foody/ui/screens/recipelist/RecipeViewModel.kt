@@ -36,13 +36,8 @@ class RecipeViewModel @Inject constructor(
     private val _recipeList = MutableLiveData<List<Recipe?>>()
     val recipeList: LiveData<List<Recipe?>> =
         Transformations.switchMap(internetState) { state ->
-            when {
-                status.value == VMStatus.ERROR -> {
-                    liveData {
-                        emit(listOf<Recipe?>())
-                    }
-                }
-                state == InternetState.DISCONNECTED -> {
+            when (state) {
+                InternetState.DISCONNECTED -> {
                     cachedRecipeFlow.asLiveData()
                 }
                 else -> {
@@ -110,7 +105,7 @@ class RecipeViewModel @Inject constructor(
         val currentRecipes = recipeList.value?.toMutableList()?.apply {
             add(null)
         }
-        _recipeList.value = currentRecipes?.toList()
+        _recipeList.value = currentRecipes
         fetchRecipes()
     }
 

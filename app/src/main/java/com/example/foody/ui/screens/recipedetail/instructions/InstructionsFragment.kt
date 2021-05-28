@@ -1,4 +1,4 @@
-package com.example.foody.ui.screens.recipedetail.ingredients
+package com.example.foody.ui.screens.recipedetail.instructions
 
 import com.example.foody.R
 import com.example.foody.databinding.FragmentInstructionsBinding

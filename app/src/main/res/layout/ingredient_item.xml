@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="ingredient"
+            type="com.example.domain.models.Ingredient" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        app:cardCornerRadius="@dimen/dp_8"
+        app:cardElevation="@dimen/dp_2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgIngredient"
+                imageUrl="@{ingredient.imageUrl}"
+                android:layout_width="@dimen/dp_132"
+                android:layout_height="0dp"
+                android:contentDescription="@string/title_ingredient_image_desc"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="h,4:3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tvIngredientTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="@dimen/dp_8"
+                android:text="@{ingredient.title}"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                app:layout_constraintStart_toEndOf="@+id/imgIngredient"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                amountToText="@{ingredient.amount}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_8"
+                app:layout_constraintStart_toEndOf="@id/imgIngredient"
+                app:layout_constraintTop_toBottomOf="@+id/tvIngredientTitle"
+                tools:text="1.0" />
+
+            <TextView
+                android:id="@+id/tvUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{ingredient.unit}"
+                app:layout_constraintStart_toEndOf="@+id/tvAmount"
+                app:layout_constraintTop_toTopOf="@id/tvAmount"
+                tools:text="serving" />
+
+            <TextView
+                android:id="@+id/tvConsistency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_8"
+                android:text="@{ingredient.consistency}"
+                app:layout_constraintStart_toEndOf="@+id/imgIngredient"
+                app:layout_constraintTop_toBottomOf="@+id/tvAmount"
+                tools:text="solid" />
+
+            <TextView
+                android:id="@+id/tvSummary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingStart="@dimen/dp_8"
+                android:paddingEnd="@dimen/dp_8"
+                android:text="@{ingredient.summary}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgIngredient"
+                app:layout_constraintTop_toBottomOf="@+id/tvConsistency"
+                tools:text="@tools:sample/lorem/random" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

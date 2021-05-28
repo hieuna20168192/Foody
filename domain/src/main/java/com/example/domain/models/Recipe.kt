@@ -14,5 +14,5 @@ data class Recipe(
         val isDairyFree: Boolean = false,
         val isGlutenFree: Boolean = false,
         val readyInMinutes: Int = 0,
-        val gradient: List<Ingredient>? = null
+        val ingredients: List<Ingredient>? = null
 )

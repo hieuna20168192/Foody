@@ -6,8 +6,8 @@ import com.example.foody.R
 import com.example.foody.adapters.RecipeDetailAdapter
 import com.example.foody.databinding.FragmentRecipeDetailBinding
 import com.example.foody.ui.base.BaseFragment
-import com.example.foody.ui.screens.recipedetail.ingredients.InstructionsFragment
-import com.example.foody.ui.screens.recipedetail.instructions.IngredientsFragment
+import com.example.foody.ui.screens.recipedetail.instructions.InstructionsFragment
+import com.example.foody.ui.screens.recipedetail.ingredients.IngredientsFragment
 import com.example.foody.ui.screens.recipedetail.overview.OverViewFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

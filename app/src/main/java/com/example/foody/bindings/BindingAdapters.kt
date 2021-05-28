@@ -1,5 +1,6 @@
 package com.example.foody.bindings
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,14 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.domain.models.Ingredient
 import com.example.domain.models.Recipe
 import com.example.foody.R
+import com.example.foody.adapters.IngredientListAdapter
 import com.example.foody.adapters.RecipeListAdapter
 import com.example.foody.ui.base.VMStatus
 import com.example.foody.ui.screens.recipelist.ScrollDirection
 
 @BindingAdapter("recipeList", "scrollDirection", requireAll = false)
-fun bindRecyclerView(
+fun bindRecipes(
     recyclerView: RecyclerView,
     data: List<Recipe>?,
     direction: ScrollDirection?
@@ -25,6 +28,18 @@ fun bindRecyclerView(
     adapter.submitList(data) {
         val posToScroll = if (direction == ScrollDirection.UP) adapter.itemCount - 1 else 0
         recyclerView.scrollToPosition(posToScroll)
+    }
+}
+
+@BindingAdapter("ingredientList")
+fun bindIngredients(
+    recyclerView: RecyclerView,
+    data: List<Ingredient>?
+) {
+    Log.d("viewModel_ingredients", "$data")
+    val adapter = recyclerView.adapter as IngredientListAdapter
+    adapter.submitList(data) {
+        recyclerView.scrollToPosition(0)
     }
 }
 
@@ -43,9 +58,16 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("numToText")
-fun bindText(textView: TextView, num: Int?) {
+fun numToText(textView: TextView, num: Int?) {
     num?.let {
         textView.text = num.toString()
+    }
+}
+
+@BindingAdapter("amountToText")
+fun amountToText(textView: TextView, amount: Double?) {
+    amount?.let {
+        textView.text = amount.toString()
     }
 }
 

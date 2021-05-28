@@ -1,6 +1,6 @@
 package com.example.domain.models
 
-class Ingredient(
+data class Ingredient(
         val title: String? = "",
         val imageUrl: String? = "",
         val summary: String? = "",

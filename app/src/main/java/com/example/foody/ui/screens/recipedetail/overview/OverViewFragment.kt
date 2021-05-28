@@ -23,6 +23,10 @@ class OverViewFragment : BaseFragment<FragmentOverviewBinding>() {
     }
 
     override fun initListeners() {
+        onRecipeChange()
+    }
+
+    private fun onRecipeChange() {
         viewModel.recipe.observe(viewLifecycleOwner, { recipe ->
             bindDietTypeList(recipe)
         })

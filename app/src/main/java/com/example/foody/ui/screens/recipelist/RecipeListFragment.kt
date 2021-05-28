@@ -34,7 +34,7 @@ class RecipeListFragment : BaseFragment<FragmentRecipeListBinding>(),
     }
 
     override fun initListeners() {
-        onRecipeItem()
+        onRecipeClick()
         onRecipeRefresh()
         onRecipeLoadMore()
         onNavigateRecipeDetail()
@@ -59,7 +59,7 @@ class RecipeListFragment : BaseFragment<FragmentRecipeListBinding>(),
 
     override fun onQueryTextChange(newText: String?) = false
 
-    private fun onRecipeItem() {
+    private fun onRecipeClick() {
         adapter = RecipeListAdapter(RecipeClickListener { recipe ->
             viewModel.onRecipeItemClicked(recipe.id)
         })

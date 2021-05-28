@@ -2,8 +2,8 @@ package com.example.foody.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.foody.ui.screens.recipedetail.ingredients.InstructionsFragment
-import com.example.foody.ui.screens.recipedetail.instructions.IngredientsFragment
+import com.example.foody.ui.screens.recipedetail.instructions.InstructionsFragment
+import com.example.foody.ui.screens.recipedetail.ingredients.IngredientsFragment
 import com.example.foody.ui.screens.recipedetail.overview.OverViewFragment
 import java.lang.IllegalArgumentException
 
